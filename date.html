@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" ng-app="cc">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width initial-scale=1 maximum-scale=1 user-scalable=no">
+<title></title>
+<link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.min.css" />
+</head>
+
+<body>
+<div class="container" ng-controller="ccCtrl">
+    <h2 class="text-center">date</h2>
+    <span class="" ng-non-bindable>{{1288323623006 | date: 'medium'}}</span><br />
+    <span class="" >{{1288323623006 | date: 'medium'}}</span><br />
+    <span class="" ng-non-bindable>{{1288323623006 | date: 'yyyy-MM-dd HH:mm:ss Z'}}</span>: <br />
+    <span class="" >{{1288323623006 | date: 'yyyy-MM-dd HH:mm:ss Z'}}</span><br />
+    <span class="" ng-non-bindable>{{1288323623006 | date: 'MM/dd/yyyy @ h:mma'}}</span>: <br />
+    <span class="" >{{1288323623006 | date: 'MM/dd/yyyy @ h:mma'}}</span><br />
+    <br />
+    <div class="alert alert-info">{{now | date: 'yyyy 年 mm 月 dd hh 点 mm 分 ss 秒'}}</div>
+    <div class="alert alert-danger">{{ {name: 'value'} | json }}</div>
+</div>
+
+<script src="js/angular.min.js"></script>    
+<script type="text/javascript">
+'use strict'
+
+// 运行不了
+function getTime(){ 
+angular.module('cc', [])
+    .controller('ccCtrl', function($scope){
+        var now =new Date().getTime()
+        $scope.now = now 
+    })
+}
+
+setInterval(getTime(), 1000)
+
+
+
+</script>
+</body>
+</html>

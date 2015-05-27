@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" ng-app="cacheModule">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width initial-scale=1 maximum-scale=1 user-scalable=no">
+<title></title>
+<link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.min.css" />
+</head>
+
+<body>
+<div class="container" ng-controller="cacheCtrl">
+    <h2 class="text-center">ng cache</h2>
+    <input type="text" ng-model="newCacheKey" placeholder="Key" class="form-control" />    
+    <input type="text" ng-model="newCacheValue" placeholder="Value" class="form-control" />
+    <button class="btn btn-info" ng-click="put(newCacheKey, newCacheValue)">Cache</button>
+
+    <p ng-if="keys.length">Cached Values</p>
+    <div class="" ng-repeat="key in keys">
+        <span class="" ng-bind="key"></span>: <b ng-bind="cache.get(key)"></b>
+    </div>
+
+    <p>Cache Info</p>
+    <div class="" ng-repeat="(key, value) in cache.info()">
+        <span class="" ng-bind="key"></span>: <b ng-bind="value"></b>
+    </div>
+</div>
+
+<script src="js/angular.min.js"></script>    
+<script type="text/javascript">
+'use strict'
+angular.module('cacheModule', [])
+    .controller('cacheCtrl', ['$scope', '$cacheFactory', function($scope, $cacheFactory){
+        $scope.keys = []
+        $scope.cache = $cacheFactory('cacheId')
+        $scope.put = function(key, value){
+            $scope.cache.put(key, value)
+            $scope.keys.push(key)
+        }
+    }])
+
+</script>
+</body>
+</html>

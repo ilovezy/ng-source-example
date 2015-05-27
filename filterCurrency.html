@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" ng-app="curModule">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width initial-scale=1 maximum-scale=1 user-scalable=no">
+<title></title>
+<link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.min.css" />
+</head>
+
+<body>
+<div class="container" ng-controller="curCtrl">
+    <h2 class="text-center">currency filter</h2>
+    <input type="number" ng-model="amount" class="form-control" /><br />
+    default curreny symbol ($): <span class="label label-info">{{amount | currency}}</span><br />
+    custom currency identifier (USD$): <span class="label label-danger">{{amount | currency: 'USD$'}}</span><br />
+    RMB (元)：<span class="label label-success">{{amount | currency: '元'}}</span><br /><br />
+    <p class="alert alert-warning">注意不是任何字符都可以的，如果需要的话自己写 filter</p>
+</div>
+
+<div class="container" ng-controller="numCtrl">
+    <h2 class="text-center" >number filter</h2>
+    Enter number: <input type="number" ng-model="num" class="form-control" /><br />
+    Default formatting: <span class="label label-primary">{{num | number}}</span> 默认是保留3位<br />
+    No fractions: <span class="label label-info">{{num | number: 0}}</span> 保留小数点后几位<br />
+    Negative number: <span class="">{{-num | number: 4}}</span> 负数
+</div>
+
+<script src="js/angular.min.js"></script>    
+<script type="text/javascript">
+'use strict'
+
+angular.module('curModule', [])
+    .controller('curCtrl', ['$scope', function($scope){
+        $scope.amount = 1235.123    
+    }])
+    .controller('numCtrl', ['$scope', function($scope){
+        $scope.num = 231.23412
+    }])
+
+</script>
+</body>
+</html>

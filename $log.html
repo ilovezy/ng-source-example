@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" ng-app="logModule">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width initial-scale=1 maximum-scale=1 user-scalable=no">
+<title></title>
+<link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.min.css" />
+</head>
+
+<body>
+<div class="container" ng-controller="logCtrl">
+    <h2 class="text-center">$log <small>想来是封装了 console.log console.warn console.info console.error 等函数了吧, 感觉没什么用</small></h2>
+    <p class="alert alert-info">Reload this page with open console, enter text and hit the log button...</p>
+    Message: 
+    <input type="text" ng-model="message" class="form-control" />
+    <br />
+    <button class="btn btn-default" ng-click="$log.log(message)">$log.log()</button>
+    <button class="btn btn-warn" ng-click="$log.warn(message)">$log.warn()</button>
+    <button class="btn btn-info" ng-click="$log.info(message)">$log.info()</button>
+    <button class="btn btn-danger" ng-click="$log.error(message)">$log.log()</button>
+</div>
+
+<script src="js/angular.min.js"></script>    
+<script type="text/javascript">
+'use strict'
+
+console.log('hi')
+console.warn('el')  
+console.info('upi')
+console.error('error')
+
+angular.module('logModule', [])
+    .controller('logCtrl', ['$scope', '$log', function($scope, $log){
+        $scope.$log = $log
+        $scope.message = 'Hello cc!'
+    }])
+</script>
+</body>
+</html>

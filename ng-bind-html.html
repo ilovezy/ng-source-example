@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en" ng-app="bindHtmlExample">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width initial-scale=1 maximum-scale=1 user-scalable=no">
+<title></title>
+<link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.min.css" />
+<style>
+.animate-show{
+    -webkit-transition: all linear 0.5s;
+    transition: all linear 0.5s;
+    line-height: 20px;
+    opacity: 1;
+    padding: 10px;
+    border: 1px solid black;
+    background: white
+}
+.animate-show.animate-hide{
+    line-height: 0;
+    opacity: 0;
+    padding: 0 10px
+}
+.check-element{
+    padding: 10px; 
+    border: 1px solid black;
+    background: white
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" ng-controller="exCtrl">
+    <h2 class="text-center">ng bind html 和 ng bind 的区别</h2>
+    <p class="alert alert-warning">ng-bind-html 需要有 angular-sanitize.js 作支撑</p>
+    <p ng-bind-html="myHtml"></p>
+    <p ng-bind="myHtml"></p>
+</div>
+<hr />
+<div class="container" ng-controller="initCtrl">
+    <div class="" ng-repeat="innerList in list" ng-init="outerIndex = $index">
+        <div class="" ng-repeat="value in innerList" ng-init="innerIndex = $index">
+            <p class="alert alert-info">list[{{ outerIndex }}][{{ innerIndex }}] = {{ value }}</p>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="container">
+    <h3>ng-non-bindable 使这个DOM不能用来绑定数据，不能解释{ { } } 里的内容</h3>
+    <div class="alert alert-success">
+        normal: {{1 + 2}}
+    </div>
+    <div class="alert alert-danger" ng-non-bindable>
+        Ignored: {{1 + 2}}
+    </div>
+</div>
+<hr />
+<div class="container">
+    <h3>ng-hide ng-show</h3>
+    <p class="alert alert-info">基于angular.animate.js</p>
+    click me: <input type="checkbox" ng-model="checked" /><br />
+    <div class="">
+        Show: 
+        <div class="check-element animte-show" ng-show="checked">
+            <span class="glyphicon glyphicon-thumbs-up"></span> I show up
+        </div>
+    </div>
+    <div class="">
+        Hide: 
+        <div class="check-element animate-show" ng-hide="checked">
+            <span class="glyphicon glyphicon-thumbs-down"></span> I show up
+        </div>
+    </div>
+</div>
+<hr />
+<div class="container">
+    <button class="btn btn-danger" ng-click="myStyle={color: 'red'}">set color</button>
+    <button class="btn btn-primary" ng-click="myStyle={background: '#428bca'}">set bg #428bca</button>
+    <button class="btn btn-default" ng-click="myStyle=''">clear style</button>
+    <br /><br />
+    <p class="" ng-style="myStyle">Sample Text</p>
+    <pre>myStyle = {{ myStyle }}</pre>
+</div>
+
+<script src="js/angular.min.js"></script>  
+<script src="angular-1.2.20/angular-sanitize.min.js"></script>    
+<script src="angular-1.2.20/angular-animate.min.js"></script>    
+<script type="text/javascript">
+'use strict'
+
+angular.module('bindHtmlExample', ['ngSanitize'])
+    .controller('exCtrl', ['$scope', function($scope){
+        $scope.myHtml = 'I am an <code>HTML</code> string with <a href="#">links!</a> and other <em>stuff</em>'
+    }])
+    .controller('initCtrl', ['$scope', function($scope){
+        $scope.list = [['a', 'b'], ['c', 'd']]
+    }])
+
+
+</script>
+
+</body>
+</html>
+
+

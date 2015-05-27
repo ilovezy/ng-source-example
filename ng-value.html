@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" ng-app="valueExample">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width initial-scale=1 maximum-scale=1 user-scalable=no">
+<title></title>
+<link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.min.css" />
+
+</head>
+
+<body>
+
+<div class="container" ng-controller="exampleCtrl">
+<h2 class="text-center">which is your favourite?</h2>
+
+<label ng-repeat="thing in things">{{thing}}<input type="radio" ng-model="my.favourite" ng-value="thing" name="favourite" />
+</label>
+
+<div class="alert alert-info">you choose {{my.favourite}}</div>
+
+</div>
+
+<script src="js/angular.min.js"></script>    
+<script type="text/javascript">
+'use strict'
+
+angular.module('valueExample', [])
+    .controller('exampleCtrl', ['$scope', function($scope){
+        $scope.things = ['pizza', 'unicorns', 'robots']
+        $scope.my = {favourite: 'unicorns'}
+    }])
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" ng-app="bindEx">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width initial-scale=1 maximum-scale=1 user-scalable=no">
+<title></title>
+<link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.min.css" />
+
+</head>
+
+<body>
+
+<div class="container" ng-controller="exCtrl">
+<h2 class="text-center"></h2>
+
+Enter name: <input type="text" ng-model="name" class="form-control" />
+Hell <span ng-bind="name"></span> !
+
+</div>
+
+<script src="js/angular.min.js"></script>    
+<script type="text/javascript">
+'use strict'
+angular.module('bindEx', [])
+    .controller('exCtrl', ['$scope', function($scope){
+        $scope.name = 'fhccc'
+    }])
+
+</script>
+
+</body>
+</html>

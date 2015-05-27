@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" ng-app="btExample">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width initial-scale=1 maximum-scale=1 user-scalable=no">
+<title></title>
+<link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.min.css" />
+
+</head>
+
+<body>
+
+<div class="container" ng-controller="btCtrl">
+    <h2 class="text-center">ng-bind-template="{ { } }  { { } }" 中间可以放多个{ {   } }</h2>
+
+Salutation: <input type="text" ng-model="salutation" class="form-control" />
+Name: <input type="text" ng-model="name" class="form-control" />
+<pre ng-bind-template="{{salutation}} {{name}} !"></pre>
+</div>
+
+<script src="js/angular.min.js"></script>    
+<script type="text/javascript">
+'use strict'
+angular.module('btExample', [])
+    .controller('btCtrl', ['$scope', function($scope){
+        $scope.salutation = 'hello'
+        $scope.name = 'world'
+    }])
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" ng-app="orderByModule">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width initial-scale=1 maximum-scale=1 user-scalable=no">
+<title></title>
+<link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.min.css" />
+</head>
+
+<body>
+<div class="container" ng-controller="orderByCtrl">
+    <h2 class="text-center">orderBy</h2>
+    <pre>Sorting predicate = {{predicate}}; reverse = {{reverse}}</pre>
+    <hr />
+    <a href="" ng-click="predicate=''" class="btn btn-warning" >unsorted</a>
+    <table class="table table-striped table-hover table-responsive">
+        <tr>
+            <th>
+                <a href="" ng-click="predicate = 'name'; reverse = false">Name</a>
+                (<a href="" ng-click="predicate = '-name'; reverse = false">^</a>)
+            </th>
+            <th><a href="" ng-click="predicate = 'phone'; reverse = !reverse">Phone Number</a></th>
+            <th><a href="" ng-click="predicate = 'age'; reverse = !reverse">Age</a></th>
+        </tr>
+        <tr ng-repeat="friend in friends | orderBy: predicate: reverse">
+            <td>{{friend.name}}</td>
+            <td>{{friend.phone}}</td>
+            <td>{{friend.age}}</td>
+        </tr>
+    </table>
+</div>
+
+<script src="js/angular.min.js"></script>    
+<script type="text/javascript">
+'use strict'
+
+angular.module('orderByModule', [])
+    .controller('orderByCtrl', ['$scope', function($scope){
+        $scope.friends = [
+            {name:'少年', phone:'555-1212', age:10},
+            {name:'周莹', phone:'555-9876', age:19},
+            {name:'晨晨', phone:'555-4321', age:21},
+            {name:'wjb', phone:'555-5678', age:35}, 
+            {name:'Julie', phone:'555-8765', age:29} 
+        ]
+        $scope.predicate = '-age'
+    }])
+
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" ng-app="ccModule">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width initial-scale=1 maximum-scale=1 user-scalable=no">
+<title></title>
+<link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.min.css" />
+</head>
+
+<body>
+<div class="container" ng-controller="ccCtrl">
+    <h2 class="text-center">{{pureWater}}</h2>
+    <drink water="{{pureWater}}"></drink>
+    <br />
+</div>
+<hr />
+<div class="container" ng-controller="bCtrl">
+    Ctrl: <br />
+    <input type="text" ng-model="bWater" class="form-control" />
+    Directive: <br />
+    <drink water="{{bWater}}"></drink>
+</div>
+
+<script src="js/angular.min.js"></script>    
+<script type="text/javascript">
+'use strict'
+angular.module('ccModule', [])
+    .controller('ccCtrl', ['$scope', function($scope){
+        $scope.pureWater = '纯净水'
+    }])
+    .directive('drink', function(){
+        return {
+            restrict: 'AE',
+            /* 
+            scope: {
+                water: '@'
+            },
+            */ 
+            link: function(scope, element, attrs){
+               scope.water = attrs.water
+            }, 
+            template: "<div>{{water}}</div>"
+        }
+    })
+    .controller('bCtrl', ['$scope', function($scope){
+        $scope.bWater = '污染水'
+    }])
+    .directive('drink', function(){
+        return {
+            restrict: 'AE', 
+            scope: { water: '=' }, 
+            template: '<input type="text" ng-model="bwater" class="form-control" />'
+        }
+    })
+
+</script>
+</body>
+</html>
